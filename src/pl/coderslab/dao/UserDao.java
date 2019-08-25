@@ -81,12 +81,12 @@ public class UserDao {
         }
     }
 
-    public User[] findAll(){
-        try(Connection conn = DBUtil.createConnection()){
+    public User[] findAll() {
+        try (Connection conn = DBUtil.createConnection()) {
             User[] users = new User[0];
             PreparedStatement statement = conn.prepareStatement(FIND_ALL_QUERY);
             ResultSet rs = statement.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 User user = new User();
                 user.setId(rs.getInt("id"));
                 user.setUserName(rs.getString("username"));
@@ -95,10 +95,10 @@ public class UserDao {
                 users = addToArray(user, users);
             }
             return users;
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
+            return null;
         }
-
     }
 
     private User[] addToArray (User user, User[] users){
