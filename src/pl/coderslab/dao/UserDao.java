@@ -10,10 +10,10 @@ import java.util.Arrays;
 
 public class UserDao {
 
-    private static final String CREATE_QUERY = "INSERT INTO user(username, email, password, group_id) VALUES (?,?,?,?)";
+    private static final String CREATE_QUERY = "INSERT INTO users(username, email, password, user_group_id) VALUES (?,?,?,?)";
     private static final String READ_BY_ID_QUERY = "SELECT * FROM users WHERE id = ?";
-    private static final String UPDATE_QUERY = "UPDATE user SET name = ?, email = ?, password = ?, group_id = ? WHERE id = ?";
-    private static final String DELETE_QUERY =  "DELEFE FROM user WHERE id = ?";
+    private static final String UPDATE_QUERY = "UPDATE users SET name = ?, email = ?, password = ?, user_group_id = ? WHERE id = ?";
+    private static final String DELETE_QUERY =  "DELEFE FROM users WHERE id = ?";
     private static final String FIND_ALL_QUERY = "SELECT * FROM users";
 
     public User create(User user){
@@ -91,7 +91,7 @@ public class UserDao {
                 user.setId(rs.getInt("id"));
                 user.setUserName(rs.getString("username"));
                 user.setEmail(rs.getString("email"));
-                user.setGoupId(rs.getInt("group_id"));
+                user.setGoupId(rs.getInt("user_group_id"));
                 users = addToArray(user, users);
             }
             return users;
