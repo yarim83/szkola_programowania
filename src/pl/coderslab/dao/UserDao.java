@@ -13,7 +13,7 @@ public class UserDao {
     private static final String CREATE_QUERY = "INSERT INTO users(username, email, password, user_group_id) VALUES (?,?,?,?)";
     private static final String READ_BY_ID_QUERY = "SELECT * FROM users WHERE id = ?";
     private static final String UPDATE_QUERY = "UPDATE users SET name = ?, email = ?, password = ?, user_group_id = ? WHERE id = ?";
-    private static final String DELETE_QUERY =  "DELEFE FROM users WHERE id = ?";
+    private static final String DELETE_QUERY =  "DELETE FROM users WHERE id = ?";
     private static final String FIND_ALL_QUERY = "SELECT * FROM users";
 
     public User create(User user){
