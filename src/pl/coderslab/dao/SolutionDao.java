@@ -113,5 +113,6 @@ public class SolutionDao {
         Solution[] tmp = Arrays.copyOf(solutions, solutions.length + 1);
         tmp[solutions.length] = solution;
         return tmp;
+
     }
 }
