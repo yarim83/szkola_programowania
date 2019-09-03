@@ -46,7 +46,7 @@ public class UserDao {
                 user.setId(rs.getInt("id"));
                 user.setUserName(rs.getString("username"));
                 user.setEmail(rs.getString("email"));
-                user.setGoupId(rs.getInt("group_id"));
+                user.setGoupId(rs.getInt("user_group_id"));
                 return user;
             }
             return null;

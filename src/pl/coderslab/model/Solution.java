@@ -1,19 +1,20 @@
 package pl.coderslab.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Solution {
 
     private int id;
-    private Date created;
-    private Date updated;
+    private Timestamp created;
+    private Timestamp updated;
     private String description;
     private int exercise_id;
     private int users_id;
 
     public Solution(){}
 
-    public Solution(int id, Date created, Date updated, String description, int exercise_id, int users_id) {
+    public Solution(int id, Timestamp created, Timestamp updated, String description, int exercise_id, int users_id) {
         this.id = id;
         this.created = created;
         this.updated = updated;
@@ -30,19 +31,19 @@ public class Solution {
         this.id = id;
     }
 
-    public Date getCreated() {
+    public Timestamp getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(Timestamp created) {
         this.created = created;
     }
 
-    public Date getUpdated() {
+    public Timestamp getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Date updated) {
+    public void setUpdated(Timestamp updated) {
         this.updated = updated;
     }
 
