@@ -15,6 +15,7 @@ public class UserDao {
     private static final String UPDATE_QUERY = "UPDATE users SET name = ?, email = ?, password = ?, user_group_id = ? WHERE id = ?";
     private static final String DELETE_QUERY =  "DELETE FROM users WHERE id = ?";
     private static final String FIND_ALL_QUERY = "SELECT * FROM users";
+    private static final String FIND_ALL_BY_GROUP_ID = "SELECT * FROM users WHERE user_group_id = ?";
 
     public User create(User user){
         try(Connection conn = DBUtil.createConnection()){
@@ -85,6 +86,27 @@ public class UserDao {
         try (Connection conn = DBUtil.createConnection()) {
             User[] users = new User[0];
             PreparedStatement statement = conn.prepareStatement(FIND_ALL_QUERY);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setUserName(rs.getString("username"));
+                user.setEmail(rs.getString("email"));
+                user.setGoupId(rs.getInt("user_group_id"));
+                users = addToArray(user, users);
+            }
+            return users;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public User[] findAllByExerciseId(int id) {
+        try (Connection conn = DBUtil.createConnection()) {
+            User[] users = new User[0];
+            PreparedStatement statement = conn.prepareStatement(FIND_ALL_BY_GROUP_ID);
+            statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 User user = new User();
