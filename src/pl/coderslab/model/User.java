@@ -2,8 +2,6 @@ package pl.coderslab.model;
 
 import pl.coderslab.util.PasswordUtil;
 
-import java.net.UnknownServiceException;
-
 public class User {
 
     private int id;
@@ -61,5 +59,15 @@ public class User {
 
     public void setGoupId(int goupId) {
         this.goupId = goupId;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", goupId=" + goupId +
+                '}';
     }
 }

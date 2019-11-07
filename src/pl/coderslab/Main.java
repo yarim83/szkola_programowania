@@ -25,6 +25,9 @@ public class Main {
                     break;
                 case "delete":
                     break;
+                case "quit":
+                    System.out.println("Wyjście z programu");
+                    break;
                 default:
                     System.out.println("Wybrałeś błędną opcję");
                     break;
@@ -42,4 +45,8 @@ public class Main {
         System.out.println("delete = usunięcie użytkownika");
         System.out.println("quit = zakończenie programu");
     }
+
+
+
+
 }

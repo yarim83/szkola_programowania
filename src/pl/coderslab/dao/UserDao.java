@@ -1,10 +1,8 @@
 package pl.coderslab.dao;
 
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import pl.coderslab.model.User;
 import pl.coderslab.util.DBUtil;
 
-import java.net.UnknownServiceException;
 import java.sql.*;
 import java.util.Arrays;
 

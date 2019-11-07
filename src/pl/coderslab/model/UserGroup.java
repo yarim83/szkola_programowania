@@ -26,4 +26,12 @@ public class UserGroup {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "UserGroup{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
