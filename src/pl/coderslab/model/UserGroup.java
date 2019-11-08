@@ -29,7 +29,7 @@ public class UserGroup {
 
     @Override
     public String toString() {
-        return "UserGroup{" +
+        return "\n" + "UserGroup{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

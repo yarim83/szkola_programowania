@@ -40,7 +40,7 @@ public class Exercise {
 
     @Override
     public String toString() {
-        return "Exercise{" +
+        return "\n" + "Exercise{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
