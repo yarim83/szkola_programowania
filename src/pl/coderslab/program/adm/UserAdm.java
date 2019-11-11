@@ -5,9 +5,8 @@ import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
 import pl.coderslab.model.User;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.sql.SQLSyntaxErrorException;
+import java.util.*;
 
 public class UserAdm {
 
@@ -30,11 +29,13 @@ public class UserAdm {
 
                     break;
                 case "add":
-                    new UserAdm().addUser();
+                    addUser();
                     break;
                 case "edit":
+                    editUser();
                     break;
-                case "delete":
+                case "del":
+                    deleteUser();
                     break;
                 case "quit":
                     break;
@@ -47,7 +48,12 @@ public class UserAdm {
 
 
     }
-
+    /**
+     * This method is used to add two integers. This is
+     * a the simplest form of a class method, just to
+     * show the usage of various javadoc Tags.
+     * @return Nothing.
+     */
     public static void printMenu() {
         UserDao userDao = new UserDao();
 
@@ -69,7 +75,7 @@ public class UserAdm {
         System.out.println("tests - tests");
         System.out.println("add - add user");
         System.out.println("edit - edit user");
-        System.out.println("delete = delete user");
+        System.out.println("del = delete user");
         System.out.println("quit = main menu");
     }
 
@@ -85,15 +91,62 @@ public class UserAdm {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Set User Name: ");
-        newUser.setUserName(scanner.nextLine());
+        newUser.setUserName(scanner.next());
         System.out.println("Set Email adress: ");
-        newUser.setEmail(scanner.nextLine());
+        newUser.setEmail(scanner.next());
         System.out.println("Set Group ID: ");
         newUser.setGoupId(scanner.nextInt());
         System.out.println("Set Password");
-        newUser.setPassword(scanner.nextLine());
+        newUser.setPassword(scanner.next());
         newUserDao.create(newUser);
     }
 
+    /**
+     * This method is used to add two integers. This is
+     * a the simplest form of a class method, just to
+     * show the usage of various javadoc Tags.
+     * @return Nothing.
+     */
+    public void editUser(){
+        User editedUser = new User();
+        UserDao editedUserDao = new UserDao();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Set User ID to edit");
+        editedUser.setId(scanner.nextInt());
+        System.out.println("Set User Name: ");
+        editedUser.setUserName(scanner.next());
+        System.out.println("Set Email adress: ");
+        editedUser.setEmail(scanner.next());
+        System.out.println("Set Group ID: ");
+        editedUser.setGoupId(scanner.nextInt());
+        System.out.println("Set Password");
+        editedUser.setPassword(scanner.next());
+
+        try {
+            editedUserDao.update(editedUser);
+        } catch (NoSuchElementException elemEx) {
+            elemEx.getMessage();
+        }
+    }
+
+    /**
+     * This method is used to add two integers. This is
+     * a the simplest form of a class method, just to
+     * show the usage of various javadoc Tags.
+     * @return Nothing.
+     */
+    public void deleteUser(){
+        UserDao deleteUserDao = new UserDao();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Set User ID to delete");
+        try {
+            int userId = (scanner.nextInt());
+            deleteUserDao.delete(userId);
+        } catch (InputMismatchException ex){
+            ex.getMessage();
+        }
+    }
 
 }

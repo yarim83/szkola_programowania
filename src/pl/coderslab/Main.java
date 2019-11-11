@@ -50,15 +50,20 @@ public class Main {
                     break;
                 case "adm":
                     new UserAdm().userMenu();
+                    scanner.close();
                     break;
                 case "task":
+                    scanner.close();
                     break;
                 case "group":
+                    scanner.close();
                     break;
                 case "assign":
+                    scanner.close();
                     break;
                 case "quit":
                     System.out.println("Wyjście z programu");
+                    scanner.close();
                     break;
                 default:
                     System.out.println("Wybrałeś błędną opcję");
