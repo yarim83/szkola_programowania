@@ -35,6 +35,13 @@ public class UserDao {
         }
     }
 
+    /**
+     * This method is used to add two integers. This is
+     * a the simplest form of a class method, just to
+     * show the usage of various javadoc Tags.
+     * @param id This is the user id to read.
+     * @return User This returns user object from database.
+     */
     public User read(int id){
         try(Connection conn = DBUtil.createConnection()){
             PreparedStatement statement = conn.prepareStatement(READ_BY_ID_QUERY);

@@ -6,14 +6,31 @@ import pl.coderslab.dao.UserGroupDao;
 import pl.coderslab.model.Solution;
 import pl.coderslab.model.User;
 import pl.coderslab.model.UserGroup;
+import pl.coderslab.program.adm.UserAdm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+
+/**
+ * <h1>Programers shool</h1>
+ * The Programers shool program implements an application that
+ * manage users, groups, tasks. Is based on mysql databases.
+ *
+ * @author  Tomasz Smereczyński
+ * @version 1.0
+ * @since   2019-11-11
+ */
+
 public class Main {
 
+    /**
+     * This is the main method which manage program.
+     * @param args Unused.
+     * @return Nothing.
+     */
     public static void main(String[] args) {
         final String exit = "quit";
         Scanner scanner = new Scanner(System.in);
@@ -31,12 +48,14 @@ public class Main {
                     System.out.println(Arrays.toString(solutionDao.findAllByExerciseId(1)));
 
                     break;
-                case "add":
-                    addUser();
+                case "adm":
+                    new UserAdm().userMenu();
                     break;
-                case "edit":
+                case "task":
                     break;
-                case "delete":
+                case "group":
+                    break;
+                case "assign":
                     break;
                 case "quit":
                     System.out.println("Wyjście z programu");
@@ -51,43 +70,19 @@ public class Main {
 
     }
 
+    /**
+     * This method is used to add two integers. This is
+     * a the simplest form of a class method, just to
+     * show the usage of various javadoc Tags.
+     * @return Nothind.
+     */
     public static void printMenu() {
-        UserDao userDao = new UserDao();
-
-        List<User> users;
-        users = Arrays.asList(userDao.findAll());
-        int userCount = 1;
-        for (User user : users) {
-            System.out.println("User: " + userCount +
-                    "\n  User ID: " + user.getId() +
-                    "\n  User Name: " + user.getUserName() +
-                    "\n  Email: " + user.getEmail() +
-                    "\n  Group ID: " + user.getGoupId() +
-                    "\n"
-                    );
-            userCount++;
-        }
-
         System.out.println("Wybierz opcję:");
         System.out.println("test - testowanie");
-        System.out.println("add - dodanie użytkownika");
-        System.out.println("edit - edycja użytkownika");
-        System.out.println("delete = usunięcie użytkownika");
-        System.out.println("quit = zakończenie programu");
-    }
-
-    public static void addUser(){
-        User newUser = new User();
-        UserDao newUserDao = new UserDao();
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Set User Name: ");
-        newUser.setUserName(scanner.nextLine());
-        System.out.println("Set Email adress: ");
-        newUser.setEmail(scanner.nextLine());
-        System.out.println("Set Group ID: ");
-        newUser.setGoupId(scanner.nextInt());
-
-        newUserDao.create(newUser);
+        System.out.println("adm - zarządzanie użytkownikami");
+        System.out.println("task - zarządzanie zadaniami");
+        System.out.println("group = zarządzanie grupami");
+        System.out.println("assign = przypisywanie grup");
+        System.out.println("quit = wyjście z programu");
     }
 }
