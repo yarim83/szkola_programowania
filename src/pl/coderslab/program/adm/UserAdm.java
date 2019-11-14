@@ -56,6 +56,17 @@ public class UserAdm {
      * @return Nothing.
      */
     public static void printMenu() {
+        allUsers();
+
+        System.out.println("Chose option:");
+        System.out.println("tests - tests");
+        System.out.println("add - add user");
+        System.out.println("edit - edit user");
+        System.out.println("del = delete user");
+        System.out.println("quit = main menu");
+    }
+
+    public static void allUsers(){
         UserDao userDao = new UserDao();
 
         List<User> users;
@@ -71,13 +82,6 @@ public class UserAdm {
             );
             userCount++;
         }
-
-        System.out.println("Chose option:");
-        System.out.println("tests - tests");
-        System.out.println("add - add user");
-        System.out.println("edit - edit user");
-        System.out.println("del = delete user");
-        System.out.println("quit = main menu");
     }
 
     /**
