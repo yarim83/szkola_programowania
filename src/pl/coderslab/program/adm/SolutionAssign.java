@@ -1,17 +1,12 @@
 package pl.coderslab.program.adm;
 
-import jdk.jshell.SourceCodeAnalysis;
-import pl.coderslab.dao.ExerciseDao;
 import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
-import pl.coderslab.model.Exercise;
-import pl.coderslab.model.Solution;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
-public class SolutionAdm {
+public class SolutionAssign {
 
     public void userMenu() {
 
@@ -87,8 +82,6 @@ public class SolutionAdm {
 
         System.out.println("Point User ID to see Solutions:");
         solutionDao.findAllByUserId(scanner.nextInt());
-
-
     }
 
 }

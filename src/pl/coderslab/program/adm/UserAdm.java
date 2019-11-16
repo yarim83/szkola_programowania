@@ -60,7 +60,6 @@ public class UserAdm {
         allUsers();
 
         System.out.println("Chose option:");
-        System.out.println("tests - tests");
         System.out.println("add - add user");
         System.out.println("edit - edit user");
         System.out.println("del = delete user");

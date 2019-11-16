@@ -8,6 +8,7 @@ import pl.coderslab.model.User;
 import pl.coderslab.model.UserGroup;
 import pl.coderslab.program.adm.GroupAdm;
 import pl.coderslab.program.adm.SolutionAdm;
+import pl.coderslab.program.adm.SolutionAssign;
 import pl.coderslab.program.adm.UserAdm;
 
 import java.util.ArrayList;
@@ -51,17 +52,16 @@ public class Main {
 
                     break;
                 case "adm":
-                    UserAdm userAdm = new UserAdm();
-                    userAdm.userMenu();
+                    new UserAdm().userMenu();
                     break;
-                case "task":
+                case "solution":
                     new SolutionAdm().userMenu();
                     break;
                 case "group":
                     new GroupAdm().userMenu();
                     break;
                 case "assign":
-                    scanner.close();
+                    new SolutionAssign().userMenu();
                     break;
                 case "quit":
                     System.out.println("Wyjście z programu");
@@ -84,12 +84,11 @@ public class Main {
      * @return Nothind.
      */
     public static void printMenu() {
-        System.out.println("Wybierz opcję:");
-        System.out.println("test - zarządzanie użytkownikami");
-        System.out.println("adm - zarządzanie użytkownikami");
-        System.out.println("task - zarządzanie zadaniami");
-        System.out.println("group = zarządzanie grupami");
-        System.out.println("assign = przypisywanie grup");
-        System.out.println("quit = wyjście z programu");
+        System.out.println("Chose option:");
+        System.out.println("adm - user manager");
+        System.out.println("solution - solution manager");
+        System.out.println("group - group manager");
+        System.out.println("assign - assign group");
+        System.out.println("quit - wyjście z programu");
     }
 }
