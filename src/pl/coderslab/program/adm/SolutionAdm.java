@@ -56,7 +56,7 @@ public class SolutionAdm {
      *
      * @return Nothing.
      */
-    public static void printMenu() {
+    private static void printMenu() {
 
         System.out.println("Chose option:");
         System.out.println("tests - tests");
@@ -71,7 +71,7 @@ public class SolutionAdm {
      * show the usage of various javadoc Tags.
      * @return Nothing.
      */
-    public static void addSolution(){
+    private static void addSolution(){
         new UserDao().findAll();
     }
 
@@ -82,7 +82,7 @@ public class SolutionAdm {
      *
      * @return Nothing.
      */
-    public static void viewSolution() {
+    private static void viewSolution() {
         SolutionDao solutionDao = new SolutionDao();
         Scanner scanner = new Scanner(System.in);
 

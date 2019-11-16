@@ -6,6 +6,8 @@ import pl.coderslab.dao.UserGroupDao;
 import pl.coderslab.model.Solution;
 import pl.coderslab.model.User;
 import pl.coderslab.model.UserGroup;
+import pl.coderslab.program.adm.GroupAdm;
+import pl.coderslab.program.adm.SolutionAdm;
 import pl.coderslab.program.adm.UserAdm;
 
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class Main {
 
         do {
             printMenu();
-            programState = scanner.nextLine();
+            programState = scanner.next();
             switch (programState) {
                 case "test":
 
@@ -49,14 +51,14 @@ public class Main {
 
                     break;
                 case "adm":
-                    new UserAdm().userMenu();
-                    scanner.close();
+                    UserAdm userAdm = new UserAdm();
+                    userAdm.userMenu();
                     break;
                 case "task":
-                    scanner.close();
+                    new SolutionAdm().userMenu();
                     break;
                 case "group":
-                    scanner.close();
+                    new GroupAdm().userMenu();
                     break;
                 case "assign":
                     scanner.close();
@@ -83,7 +85,7 @@ public class Main {
      */
     public static void printMenu() {
         System.out.println("Wybierz opcję:");
-        System.out.println("test - testowanie");
+        System.out.println("test - zarządzanie użytkownikami");
         System.out.println("adm - zarządzanie użytkownikami");
         System.out.println("task - zarządzanie zadaniami");
         System.out.println("group = zarządzanie grupami");

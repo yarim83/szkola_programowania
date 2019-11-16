@@ -3,6 +3,7 @@ package pl.coderslab.program.adm;
 import pl.coderslab.Main;
 import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
+import pl.coderslab.dao.UserGroupDao;
 import pl.coderslab.model.User;
 
 import java.sql.SQLSyntaxErrorException;
