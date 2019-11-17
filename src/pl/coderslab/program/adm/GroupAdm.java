@@ -3,7 +3,6 @@ package pl.coderslab.program.adm;
 import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
 import pl.coderslab.dao.UserGroupDao;
-import pl.coderslab.model.User;
 import pl.coderslab.model.UserGroup;
 
 import java.util.Arrays;
@@ -12,45 +11,45 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GroupAdm {
+    public static void main(String[] args) {
 
-        public void userMenu() {
+        final String exit = "quit";
+        Scanner scanner = new Scanner(System.in);
+        String programState = "run";
 
-            final String exit = "quit";
-            Scanner scanner = new Scanner(System.in);
-            String programState = "run";
+        do {
+            printMenu();
+            programState = scanner.nextLine();
+            switch (programState) {
+                case "testy":
 
-            do {
-                printMenu();
-                programState = scanner.nextLine();
-                switch (programState) {
-                    case "testy":
+                    UserDao userDao = new UserDao();
 
-                        UserDao userDao = new UserDao();
+                    SolutionDao solutionDao = new SolutionDao();
+                    System.out.println(Arrays.toString(solutionDao.findAllByExerciseId(1)));
 
-                        SolutionDao solutionDao = new SolutionDao();
-                        System.out.println(Arrays.toString(solutionDao.findAllByExerciseId(1)));
+                    break;
+                case "add":
+                    addGroup();
+                    break;
+                case "edit":
+                    editGroup();
+                    break;
+                case "del":
+                    deleteGroup();
+                    break;
+                case "quit":
+                    break;
+                default:
+                    System.out.println("Wybrałeś błędną opcję");
+                    break;
+            }
 
-                        break;
-                    case "add":
-                        addGroup();
-                        break;
-                    case "edit":
-                        editGroup();
-                        break;
-                    case "del":
-                        deleteGroup();
-                        break;
-                    case "quit":
-                        break;
-                    default:
-                        System.out.println("Wybrałeś błędną opcję");
-                        break;
-                }
+        } while (!programState.equalsIgnoreCase(exit));
 
-            } while (!programState.equalsIgnoreCase(exit));
+    }
 
 
-        }
 
         /**
          * This method is used to add two integers. This is
@@ -80,15 +79,15 @@ public class GroupAdm {
             System.out.println("quit = main menu");
         }
 
-        public void addGroup(){
+        public static void addGroup(){
 
         }
 
-        public void editGroup(){
+        public static void editGroup(){
 
         }
 
-        public void deleteGroup(){
+        public static void deleteGroup(){
             UserGroupDao userGroupDao = new UserGroupDao();
             Scanner scanner = new Scanner(System.in);
 
