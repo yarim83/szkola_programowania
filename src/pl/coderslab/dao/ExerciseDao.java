@@ -8,7 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ExerciseDao {
 
@@ -17,6 +19,7 @@ public class ExerciseDao {
     private static final String UPDATE_QUERY = "UPDATE exercise SET title = ?, description = ? WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM exercise WHERE id = ?";
     private static final String FIND_ALL_QUERY = "SELECT * FROM exercise";
+    private static final String FIND_ALL_EXERCISE_WHERE_NO_SOLUTION = "SELECT e.id, e.title, e.description FROM exercise e LEFT JOIN solution sol ON e.id = sol.exercise_id AND sol.users_id = ? WHERE sol.id IS NULL";
 
     public Exercise create(Exercise exercise) {
         try (Connection conn = DBUtil.createConnection()) {
@@ -26,8 +29,9 @@ public class ExerciseDao {
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
-                exercise.setId(rs.getInt("id"));
+                exercise.setId(rs.getInt(1));
             }
+            rs.close();
             return exercise;
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -78,28 +82,49 @@ public class ExerciseDao {
         }
     }
 
-    public Exercise[] findAll() {
-        try (Connection conn = DBUtil.createConnection()) {
-            Exercise[] exercises = new Exercise[0];
-            PreparedStatement statement = conn.prepareStatement(FIND_ALL_QUERY);
+    public List<Exercise> findAll() {
+        try (Connection conn = DBUtil.createConnection();
+             PreparedStatement statement = conn.prepareStatement(FIND_ALL_QUERY)) {
+            List<Exercise> exerciseList = new ArrayList<>();
             ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 Exercise exercise = new Exercise();
                 exercise.setId(rs.getInt("id"));
                 exercise.setTitle(rs.getString("title"));
                 exercise.setDescription(rs.getString("description"));
-                exercises = addArray(exercise, exercises);
+                exerciseList.add(exercise);
             }
-            return exercises;
+            rs.close();
+            return exerciseList;
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
-
     }
 
-    public Exercise[] addArray(Exercise exercise, Exercise[] exercises){
-        Exercise[] tmp = Arrays.copyOf(exercises, exercises.length+1);
+    public List<Exercise> findAllExerciseWhereNoSolution(int userId) {
+        try (Connection conn = DBUtil.createConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(FIND_ALL_EXERCISE_WHERE_NO_SOLUTION)) {
+            List<Exercise> exerciseList = new ArrayList<>();
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Exercise exercise = new Exercise();
+                exercise.setId(resultSet.getInt("id"));
+                exercise.setTitle(resultSet.getString("title"));
+                exercise.setDescription(resultSet.getString("description"));
+                exerciseList.add(exercise);
+            }
+            resultSet.close();
+            return exerciseList;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public Exercise[] addArray(Exercise exercise, Exercise[] exercises) {
+        Exercise[] tmp = Arrays.copyOf(exercises, exercises.length + 1);
         tmp[exercises.length] = exercise;
         return tmp;
     }
