@@ -128,7 +128,11 @@ public class UserDao {
             return null;
         }
     }
-
+    /**
+     * This method is DAO method to find all User by Exercise Id in DB.
+     *
+     * @return List<User> list of User objects.
+     */
     public List<User> findAllByExerciseId(int id) {
         try (Connection conn = DBUtil.createConnection()) {
             List<User> userList = new ArrayList<>();
@@ -149,12 +153,5 @@ public class UserDao {
             return null;
         }
     }
-
-    private User[] addToArray(User user, User[] users) {
-        User[] tmp = Arrays.copyOf(users, users.length + 1);
-        tmp[users.length] = user;
-        return tmp;
-    }
-
 
 }
