@@ -31,7 +31,7 @@ public class GroupAdm {
                 case "quit":
                     break;
                 default:
-                    System.out.println("Wybrałeś błędną opcję");
+                    System.out.println("Wrong option");
                     break;
             }
 

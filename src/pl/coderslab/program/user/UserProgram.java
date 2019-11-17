@@ -115,7 +115,7 @@ public class UserProgram {
     public static void viewSolution(int userId, SolutionDao solutionDao) {
 
         List<Solution> solutions;
-        solutions = Arrays.asList(solutionDao.findAllByUserId(userId));
+        solutions = solutionDao.findAllByUserId(userId);
         int counter = 0;
         System.out.printf("%4s | %21s | %21s | %30s | %11s | %7s |%n", "ID", "CREATED", "UPDATED", "DESCRIPTION", "EXERCISE ID", "USER ID");
         for (Solution solution : solutions) {
