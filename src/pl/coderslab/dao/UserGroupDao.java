@@ -6,7 +6,9 @@ import pl.coderslab.util.DBUtil;
 
 import javax.lang.model.element.ModuleElement;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class UserGroupDao {
 
@@ -72,18 +74,18 @@ public class UserGroupDao {
         }
     }
 
-    public UserGroup[] findAll (){
+    public List<UserGroup> findAll (){
         try(Connection conn = DBUtil.createConnection()){
-            UserGroup[] userGroups = new UserGroup[0];
+            List<UserGroup> userGroupList = new ArrayList<>();
             PreparedStatement statement = conn.prepareStatement(FIND_ALL_QUERY);
             ResultSet rs = statement.executeQuery();
             while (rs.next()){
                 UserGroup userGroup = new UserGroup();
                 userGroup.setId(rs.getInt("id"));
                 userGroup.setName(rs.getString("name"));
-                userGroups = addArray(userGroup, userGroups);
+                userGroupList.add(userGroup);
             }
-            return userGroups;
+            return userGroupList;
         } catch (SQLException ex){
             ex.printStackTrace();
             return null;

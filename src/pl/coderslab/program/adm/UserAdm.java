@@ -17,14 +17,6 @@ public class UserAdm {
             printMenu();
             programState = scanner.nextLine();
             switch (programState) {
-                case "testy":
-
-                    UserDao userDao = new UserDao();
-
-                    SolutionDao solutionDao = new SolutionDao();
-                    System.out.println(Arrays.toString(solutionDao.findAllByExerciseId(1)));
-
-                    break;
                 case "add":
                     addUser();
                     break;
@@ -37,7 +29,7 @@ public class UserAdm {
                 case "quit":
                     break;
                 default:
-                    System.out.println("Wybrałeś błędną opcję");
+                    System.out.println("Wrong option");
                     break;
             }
 
@@ -67,7 +59,7 @@ public class UserAdm {
         UserDao userDao = new UserDao();
 
         List<User> users;
-        users = Arrays.asList(userDao.findAll());
+        users = userDao.findAll();
         int userCount = 1;
         for (User user : users) {
             System.out.println("User: " + userCount +
