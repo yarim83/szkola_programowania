@@ -3,6 +3,7 @@ package pl.coderslab.program.adm;
 import pl.coderslab.Main;
 import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
+import pl.coderslab.dao.UserGroupDao;
 import pl.coderslab.model.User;
 
 import java.sql.SQLSyntaxErrorException;
@@ -59,7 +60,6 @@ public class UserAdm {
         allUsers();
 
         System.out.println("Chose option:");
-        System.out.println("tests - tests");
         System.out.println("add - add user");
         System.out.println("edit - edit user");
         System.out.println("del = delete user");
@@ -147,7 +147,7 @@ public class UserAdm {
 
         System.out.println("Set User ID to delete");
         try {
-            int userId = (scanner.nextInt());
+            int userId = scanner.nextInt();
             deleteUserDao.delete(userId);
         } catch (InputMismatchException ex){
             ex.getMessage();

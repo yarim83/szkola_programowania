@@ -1,6 +1,7 @@
+
 package pl.coderslab.util;
 
-import pl.coderslab.util.BCrypt;
+import org.mindrot.jbcrypt.BCrypt;
 
 public final class PasswordUtil {
     private PasswordUtil(){}

@@ -73,7 +73,6 @@ public class ExerciseAdm {
         }
 
         System.out.println("Chose option:");
-        System.out.println("tests - tests");
         System.out.println("add - add exercise");
         System.out.println("edit - edit exercise");
         System.out.println("del = delete exercise");

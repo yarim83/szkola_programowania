@@ -74,7 +74,6 @@ public class GroupAdm {
             }
 
             System.out.println("Chose option:");
-            System.out.println("tests - tests");
             System.out.println("add - add group");
             System.out.println("edit - edit group");
             System.out.println("del = delete group");

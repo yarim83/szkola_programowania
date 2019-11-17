@@ -2,15 +2,12 @@ package pl.coderslab;
 
 import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
-import pl.coderslab.dao.UserGroupDao;
-import pl.coderslab.model.Solution;
-import pl.coderslab.model.User;
-import pl.coderslab.model.UserGroup;
+import pl.coderslab.program.adm.ExerciseAdm;
+import pl.coderslab.program.adm.GroupAdm;
+import pl.coderslab.program.adm.SolutionAssign;
 import pl.coderslab.program.adm.UserAdm;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -38,7 +35,7 @@ public class Main {
 
         do {
             printMenu();
-            programState = scanner.nextLine();
+            programState = scanner.next();
             switch (programState) {
                 case "test":
 
@@ -50,23 +47,22 @@ public class Main {
                     break;
                 case "adm":
                     new UserAdm().userMenu();
-                    scanner.close();
                     break;
-                case "task":
-                    scanner.close();
+                case "exercise":
+                    new ExerciseAdm().userMenu();
                     break;
                 case "group":
-                    scanner.close();
+                    new GroupAdm().userMenu();
                     break;
                 case "assign":
-                    scanner.close();
+                    new SolutionAssign().userMenu();
                     break;
                 case "quit":
-                    System.out.println("Wyjście z programu");
+                    System.out.println("Exiting program. Bey!");
                     scanner.close();
                     break;
                 default:
-                    System.out.println("Wybrałeś błędną opcję");
+                    System.out.println("Wrong option");
                     break;
             }
 
@@ -82,12 +78,11 @@ public class Main {
      * @return Nothind.
      */
     public static void printMenu() {
-        System.out.println("Wybierz opcję:");
-        System.out.println("test - testowanie");
-        System.out.println("adm - zarządzanie użytkownikami");
-        System.out.println("task - zarządzanie zadaniami");
-        System.out.println("group = zarządzanie grupami");
-        System.out.println("assign = przypisywanie grup");
-        System.out.println("quit = wyjście z programu");
+        System.out.println("Chose option:");
+        System.out.println("adm - user manager");
+        System.out.println("solution - solution manager");
+        System.out.println("group - group manager");
+        System.out.println("assign - assign group");
+        System.out.println("quit - exit program");
     }
 }
