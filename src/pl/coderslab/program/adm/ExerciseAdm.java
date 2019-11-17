@@ -4,14 +4,11 @@ import pl.coderslab.dao.ExerciseDao;
 import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
 import pl.coderslab.model.Exercise;
-import pl.coderslab.model.User;
 
 import java.util.*;
 
 public class ExerciseAdm {
-
-    public void userMenu() {
-
+    public static void main(String[] args) {
         final String exit = "quit";
         Scanner scanner = new Scanner(System.in);
         String programState = "run";
@@ -47,7 +44,10 @@ public class ExerciseAdm {
         } while (!programState.equalsIgnoreCase(exit));
 
 
+
     }
+
+
 
 
     /**
@@ -87,7 +87,7 @@ public class ExerciseAdm {
      * show the usage of various javadoc Tags.
      * @return Nothing.
      */
-    public void addExercise() {
+    public static void addExercise() {
         Exercise exercise = new Exercise();
         ExerciseDao exerciseDao = new ExerciseDao();
         Scanner scanner = new Scanner(System.in);
@@ -106,7 +106,7 @@ public class ExerciseAdm {
      * show the usage of various javadoc Tags.
      * @return Nothing.
      */
-    public void editExercise(){
+    public static void editExercise(){
         Exercise exercise = new Exercise();
         ExerciseDao exerciseDao = new ExerciseDao();
         Scanner scanner = new Scanner(System.in);
@@ -131,7 +131,7 @@ public class ExerciseAdm {
      * show the usage of various javadoc Tags.
      * @return Nothing.
      */
-    public void deleteExercise(){
+    public static void deleteExercise(){
         ExerciseDao exerciseDao = new ExerciseDao();
         Scanner scanner = new Scanner(System.in);
 

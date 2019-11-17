@@ -1,17 +1,13 @@
 package pl.coderslab.program.adm;
 
-import pl.coderslab.Main;
 import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
-import pl.coderslab.dao.UserGroupDao;
 import pl.coderslab.model.User;
 
-import java.sql.SQLSyntaxErrorException;
 import java.util.*;
 
 public class UserAdm {
-
-    public void userMenu() {
+    public static void main(String[] args) {
 
         final String exit = "quit";
         Scanner scanner = new Scanner(System.in);
@@ -47,13 +43,14 @@ public class UserAdm {
 
         } while (!programState.equalsIgnoreCase(exit));
 
-
     }
+
 
     /**
      * This method is used to add two integers. This is
      * a the simplest form of a class method, just to
      * show the usage of various javadoc Tags.
+     *
      * @return Nothing.
      */
     public static void printMenu() {
@@ -66,7 +63,7 @@ public class UserAdm {
         System.out.println("quit = main menu");
     }
 
-    public static void allUsers(){
+    public static void allUsers() {
         UserDao userDao = new UserDao();
 
         List<User> users;
@@ -88,9 +85,10 @@ public class UserAdm {
      * This method is used to add two integers. This is
      * a the simplest form of a class method, just to
      * show the usage of various javadoc Tags.
+     *
      * @return Nothing.
      */
-    public void addUser() {
+    public static void addUser() {
         User newUser = new User();
         UserDao newUserDao = new UserDao();
         Scanner scanner = new Scanner(System.in);
@@ -110,9 +108,10 @@ public class UserAdm {
      * This method is used to add two integers. This is
      * a the simplest form of a class method, just to
      * show the usage of various javadoc Tags.
+     *
      * @return Nothing.
      */
-    public void editUser(){
+    public static void editUser() {
         User editedUser = new User();
         UserDao editedUserDao = new UserDao();
         Scanner scanner = new Scanner(System.in);
@@ -139,9 +138,10 @@ public class UserAdm {
      * This method is used to add two integers. This is
      * a the simplest form of a class method, just to
      * show the usage of various javadoc Tags.
+     *
      * @return Nothing.
      */
-    public void deleteUser(){
+    public static void deleteUser() {
         UserDao deleteUserDao = new UserDao();
         Scanner scanner = new Scanner(System.in);
 
@@ -149,7 +149,7 @@ public class UserAdm {
         try {
             int userId = scanner.nextInt();
             deleteUserDao.delete(userId);
-        } catch (InputMismatchException ex){
+        } catch (InputMismatchException ex) {
             ex.getMessage();
         }
     }
