@@ -1,42 +1,32 @@
 package pl.coderslab.program.adm;
 
-import pl.coderslab.dao.SolutionDao;
-import pl.coderslab.dao.UserDao;
 import pl.coderslab.dao.UserGroupDao;
 import pl.coderslab.model.UserGroup;
 
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class GroupAdm {
     public static void main(String[] args) {
-
         final String exit = "quit";
         Scanner scanner = new Scanner(System.in);
+        UserGroup userGroup = new UserGroup();
+        UserGroupDao userGroupDao = new UserGroupDao();
         String programState = "run";
 
         do {
-            printMenu();
+            printMenu(userGroupDao);
             programState = scanner.nextLine();
             switch (programState) {
-                case "testy":
-
-                    UserDao userDao = new UserDao();
-
-                    SolutionDao solutionDao = new SolutionDao();
-                    System.out.println(Arrays.toString(solutionDao.findAllByExerciseId(1)));
-
-                    break;
                 case "add":
-                    addGroup();
+                    addGroup(scanner, userGroup, userGroupDao);
                     break;
                 case "edit":
-                    editGroup();
+                    editGroup(scanner, userGroup, userGroupDao);
                     break;
                 case "del":
-                    deleteGroup();
+                    deleteGroup(scanner, userGroupDao);
                     break;
                 case "quit":
                     break;
@@ -49,55 +39,79 @@ public class GroupAdm {
 
     }
 
+    /**
+     * This method is used to print program menu.
+     *
+     * @return Nothing.
+     */
+    public static void printMenu(UserGroupDao userGroupDao) {
 
+        List<UserGroup> userGroups;
+        userGroups = userGroupDao.findAll();
 
-        /**
-         * This method is used to add two integers. This is
-         * a the simplest form of a class method, just to
-         * show the usage of various javadoc Tags.
-         * @return Nothing.
-         */
-        public static void printMenu() {
-            UserGroupDao userGroupDao = new UserGroupDao();
-
-            List<UserGroup> userGroups;
-            userGroups = Arrays.asList(userGroupDao.findAll());
-            int groupCount = 1;
-            for (UserGroup userGroup : userGroups) {
-                System.out.println("Groups: " + groupCount +
-                        "\n  Group ID: " + userGroup.getId() +
-                        "\n  User Name: " + userGroup.getName() +
-                        "\n"
-                );
-                groupCount++;
-            }
-
-            System.out.println("Chose option:");
-            System.out.println("add - add group");
-            System.out.println("edit - edit group");
-            System.out.println("del = delete group");
-            System.out.println("quit = main menu");
+        int counter = 0;
+        System.out.printf("%4s | %21s |%n", "ID", "GROUP NAME");
+        for (UserGroup userGroup : userGroups) {
+            System.out.printf("%4d | %21s |%n", userGroup.getId(), userGroup.getName());
+            counter++;
         }
 
-        public static void addGroup(){
+        System.out.printf("\n %4s: %1d %n \n", "USER GROUP COUNTED", counter);
 
-        }
+        System.out.println("Chose option:");
+        System.out.println("add - add group");
+        System.out.println("edit - edit group");
+        System.out.println("del = delete group");
+        System.out.println("quit = main menu");
+    }
+    /**
+     * This method is used to add group do database.
+     *
+     * @return Nothing.
+     */
+    public static void addGroup(Scanner scanner, UserGroup userGroup, UserGroupDao userGroupDao) {
+        System.out.println("Set title for User Grop");
+        userGroup.setName(scanner.nextLine());
 
-        public static void editGroup(){
-
-        }
-
-        public static void deleteGroup(){
-            UserGroupDao userGroupDao = new UserGroupDao();
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println("Set Group ID to delete");
-
-            try{
-                userGroupDao.delete(scanner.nextInt());
+        userGroupDao.create(userGroup);
+    }
+    /**
+     * This method is used to edit user group.
+     *
+     * @return Nothing.
+     */
+    public static void editGroup(Scanner scanner, UserGroup userGroup, UserGroupDao userGroupDao) {
+        while (true) {
+            try {
+                System.out.println("Point ID to Edit");
+                userGroup.setId(scanner.nextInt());
+                break;
             } catch (InputMismatchException ex) {
                 ex.getMessage();
+                scanner.nextLine();
             }
         }
+
+        scanner.nextLine();
+        System.out.println("Set new title for User Group");
+        userGroup.setName(scanner.nextLine());
+
+        userGroupDao.update(userGroup);
+    }
+    /**
+     * This method is used to delete user group.
+     *
+     * @return Nothing.
+     */
+    public static void deleteGroup(Scanner scanner, UserGroupDao userGroupDao) {
+        System.out.println("Set Group ID to delete");
+
+        try {
+            userGroupDao.delete(scanner.nextInt());
+            System.out.println("Group deleted");
+        } catch (InputMismatchException ex) {
+            ex.getMessage();
+        }
+    }
 
 }
