@@ -70,7 +70,7 @@ public class SolutionAssign {
 
             userId = scanner.nextInt();
             userDao.read(userId);
-            System.out.println(Arrays.toString(exerciseDao.findAll()));
+            System.out.println(exerciseDao.findAll());
 
             System.out.println("Point Exercise ID to add to User:");
             exerciseId = scanner.nextInt();
@@ -81,11 +81,7 @@ public class SolutionAssign {
                 solution.setExercise_id(exerciseId);
                 solution.setDescription("");
                 solution.setUpdated(null);
-                Calendar calendar = Calendar.getInstance();
-                Timestamp currentTimestamp = new Timestamp(calendar.getTime().getTime());
-
-                System.out.println(currentTimestamp);
-                solution.setCreated(currentTimestamp);
+                solution.setCreated(new Timestamp(System.currentTimeMillis()));
                 solutionDao.create(solution);
             } catch (NullPointerException ex) {
                 System.out.println("Wrong solution ID");

@@ -4,6 +4,7 @@ import pl.coderslab.dao.ExerciseDao;
 import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
 import pl.coderslab.model.Exercise;
+import pl.coderslab.model.Solution;
 
 import java.util.*;
 
@@ -17,22 +18,14 @@ public class ExerciseAdm {
             printMenu();
             programState = scanner.nextLine();
             switch (programState) {
-                case "testy":
-
-                    UserDao userDao = new UserDao();
-
-                    SolutionDao solutionDao = new SolutionDao();
-                    System.out.println(Arrays.toString(solutionDao.findAllByExerciseId(1)));
-
-                    break;
                 case "add":
-                    addExercise();
+                    addExercise(scanner);
                     break;
                 case "edit":
-                    editExercise();
+                    editExercise(scanner);
                     break;
                 case "del":
-                    deleteExercise();
+                    deleteExercise(scanner);
                     break;
                 case "quit":
                     break;
@@ -43,34 +36,28 @@ public class ExerciseAdm {
 
         } while (!programState.equalsIgnoreCase(exit));
 
-
-
+        scanner.close();
     }
 
-
-
-
     /**
-     * This method is used to add two integers. This is
-     * a the simplest form of a class method, just to
-     * show the usage of various javadoc Tags.
+     * This method is used to add two integers.
+     *
      * @return Nothing.
      */
     public static void printMenu() {
         ExerciseDao exerciseDao = new ExerciseDao();
+        List<Exercise> exercises = new ArrayList<>();
 
-        List<Exercise> exercises;
-        exercises = Arrays.asList(exerciseDao.findAll());
-        int exerciseCount = 1;
+        exercises = exerciseDao.findAll();
+
+        int counter = 0;
+        System.out.printf("%4s | %21s | %31s |%n", "ID", "EXERCISE TITLE", "DESCRIPTION");
         for (Exercise exercise : exercises) {
-            System.out.println("User: " + exerciseCount +
-                    "\n  User ID: " + exercise.getId() +
-                    "\n  User Name: " + exercise.getTitle() +
-                    "\n  Email: " + exercise.getDescription() +
-                    "\n"
-            );
-            exerciseCount++;
+            System.out.printf("%4d | %21s | %31s |%n", exercise.getId(), exercise.getTitle(), exercise.getDescription());
+            counter++;
         }
+
+        System.out.printf("\n %4s: %1d %n \n", "USER COUNTED", counter);
 
         System.out.println("Chose option:");
         System.out.println("add - add exercise");
@@ -79,23 +66,21 @@ public class ExerciseAdm {
         System.out.println("quit = main menu");
     }
 
-
-
     /**
      * This method is used to add two integers. This is
      * a the simplest form of a class method, just to
      * show the usage of various javadoc Tags.
+     *
      * @return Nothing.
      */
-    public static void addExercise() {
+    public static void addExercise(Scanner scanner) {
         Exercise exercise = new Exercise();
         ExerciseDao exerciseDao = new ExerciseDao();
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Set title for Exercise");
-        exercise.setTitle(scanner.next());
+        exercise.setTitle(scanner.nextLine());
         System.out.println("Set description for Exercise");
-        exercise.setDescription(scanner.next());
+        exercise.setDescription(scanner.nextLine());
 
         exerciseDao.create(exercise);
     }
@@ -104,42 +89,49 @@ public class ExerciseAdm {
      * This method is used to add two integers. This is
      * a the simplest form of a class method, just to
      * show the usage of various javadoc Tags.
+     *
      * @return Nothing.
      */
-    public static void editExercise(){
+    public static void editExercise(Scanner scanner) {
         Exercise exercise = new Exercise();
         ExerciseDao exerciseDao = new ExerciseDao();
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Point ID to Edit");
-        exercise.setId(scanner.nextInt());
-        System.out.println("Set new title for Exercise");
-        exercise.setTitle(scanner.next());
-        System.out.println("Set new description for Exercise");
-        exercise.setDescription(scanner.next());
-
-        try {
-            exerciseDao.update(exercise);
-        } catch (NoSuchElementException elemEx) {
-            elemEx.getMessage();
+        while (true) {
+            try {
+                System.out.println("Point ID to Edit");
+                exercise.setId(scanner.nextInt());
+                break;
+            } catch (InputMismatchException ex) {
+                ex.getMessage();
+                scanner.nextLine();
+            }
         }
+
+
+        scanner.nextLine();
+        System.out.println("Set new title for Exercise");
+        exercise.setTitle(scanner.nextLine());
+        System.out.println("Set new description for Exercise");
+        exercise.setDescription(scanner.nextLine());
+
+        exerciseDao.update(exercise);
     }
 
     /**
      * This method is used to add two integers. This is
      * a the simplest form of a class method, just to
      * show the usage of various javadoc Tags.
+     *
      * @return Nothing.
      */
-    public static void deleteExercise(){
+    public static void deleteExercise(Scanner scanner) {
         ExerciseDao exerciseDao = new ExerciseDao();
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Point User ID to delete");
         try {
             int exerciseId = (scanner.nextInt());
             exerciseDao.delete(exerciseId);
-        } catch (InputMismatchException ex){
+        } catch (InputMismatchException ex) {
             ex.getMessage();
         }
     }
