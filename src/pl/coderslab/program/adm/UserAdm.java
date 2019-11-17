@@ -2,29 +2,33 @@ package pl.coderslab.program.adm;
 
 import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
+import pl.coderslab.model.Exercise;
 import pl.coderslab.model.User;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
 
 public class UserAdm {
     public static void main(String[] args) {
-
         final String exit = "quit";
-        Scanner scanner = new Scanner(System.in);
         String programState = "run";
+        Scanner scanner = new Scanner(System.in);
+        User user = new User();
+        UserDao userDao = new UserDao();
+
 
         do {
-            printMenu();
+            printMenu(userDao);
             programState = scanner.nextLine();
             switch (programState) {
                 case "add":
-                    addUser();
+                    addUser(scanner, user, userDao);
                     break;
                 case "edit":
-                    editUser();
+                    editUser(scanner, user, userDao);
                     break;
                 case "del":
-                    deleteUser();
+                    deleteUser(scanner, userDao);
                     break;
                 case "quit":
                     break;
@@ -39,14 +43,12 @@ public class UserAdm {
 
 
     /**
-     * This method is used to add two integers. This is
-     * a the simplest form of a class method, just to
-     * show the usage of various javadoc Tags.
+     * This method is used to add two integers.
      *
      * @return Nothing.
      */
-    public static void printMenu() {
-        allUsers();
+    public static void printMenu(UserDao userDao) {
+        allUsers(userDao);
 
         System.out.println("Chose option:");
         System.out.println("add - add user");
@@ -55,22 +57,18 @@ public class UserAdm {
         System.out.println("quit = main menu");
     }
 
-    public static void allUsers() {
-        UserDao userDao = new UserDao();
+    public static void allUsers(UserDao userDao) {
+        List<User> users = userDao.findAll();
 
-        List<User> users;
-        users = userDao.findAll();
-        int userCount = 1;
+        int counter = 0;
+        System.out.printf("%4s | %21s | %31s | %10s |%n", "ID", "USER NAME", "EMAIL", "GROUP ID");
         for (User user : users) {
-            System.out.println("User: " + userCount +
-                    "\n  User ID: " + user.getId() +
-                    "\n  User Name: " + user.getUserName() +
-                    "\n  Email: " + user.getEmail() +
-                    "\n  Group ID: " + user.getGoupId() +
-                    "\n"
-            );
-            userCount++;
+            System.out.printf("%4d | %21s | %31s |%10d |%n", user.getId(), user.getUserName(), user.getEmail(), user.getGoupId());
+            counter++;
         }
+
+        System.out.printf("\n %4s: %1d %n \n", "USER COUNTED", counter);
+
     }
 
     /**
@@ -80,49 +78,44 @@ public class UserAdm {
      *
      * @return Nothing.
      */
-    public static void addUser() {
-        User newUser = new User();
-        UserDao newUserDao = new UserDao();
-        Scanner scanner = new Scanner(System.in);
-
+    public static void addUser(Scanner scanner, User user, UserDao userDao) {
         System.out.println("Set User Name: ");
-        newUser.setUserName(scanner.next());
+        user.setUserName(scanner.next());
         System.out.println("Set Email adress: ");
-        newUser.setEmail(scanner.next());
+        user.setEmail(scanner.next());
         System.out.println("Set Group ID: ");
-        newUser.setGoupId(scanner.nextInt());
+        user.setGoupId(scanner.nextInt());
         System.out.println("Set Password");
-        newUser.setPassword(scanner.next());
-        newUserDao.create(newUser);
+        user.setPassword(scanner.next());
+        userDao.create(user);
     }
 
     /**
-     * This method is used to add two integers. This is
-     * a the simplest form of a class method, just to
-     * show the usage of various javadoc Tags.
-     *
+     * This method is used to add two integers.
+     * @param scanner
+     * @param user
+     * @param userDao
      * @return Nothing.
      */
-    public static void editUser() {
-        User editedUser = new User();
-        UserDao editedUserDao = new UserDao();
-        Scanner scanner = new Scanner(System.in);
+    public static void editUser(Scanner scanner, User user, UserDao userDao) {
 
         System.out.println("Point User ID to edit");
-        editedUser.setId(scanner.nextInt());
+        user.setId(scanner.nextInt());
+        scanner.nextLine();
         System.out.println("Set new User Name: ");
-        editedUser.setUserName(scanner.next());
+        user.setUserName(scanner.nextLine());
         System.out.println("Set new Email adress: ");
-        editedUser.setEmail(scanner.next());
+        user.setEmail(scanner.nextLine());
         System.out.println("Set new Group ID: ");
-        editedUser.setGoupId(scanner.nextInt());
+        user.setGoupId(scanner.nextInt());
+        scanner.nextLine();
         System.out.println("Set new Password");
-        editedUser.setPassword(scanner.next());
+        user.setPassword(scanner.nextLine());
 
         try {
-            editedUserDao.update(editedUser);
-        } catch (NoSuchElementException elemEx) {
-            elemEx.getMessage();
+            userDao.update(user);
+        } catch (NoSuchElementException ex) {
+            ex.getMessage();
         }
     }
 
@@ -133,14 +126,11 @@ public class UserAdm {
      *
      * @return Nothing.
      */
-    public static void deleteUser() {
-        UserDao deleteUserDao = new UserDao();
-        Scanner scanner = new Scanner(System.in);
-
+    public static void deleteUser(Scanner scanner, UserDao userDao) {
         System.out.println("Set User ID to delete");
         try {
             int userId = scanner.nextInt();
-            deleteUserDao.delete(userId);
+            userDao.delete(userId);
         } catch (InputMismatchException ex) {
             ex.getMessage();
         }
