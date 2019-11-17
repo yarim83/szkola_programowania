@@ -147,7 +147,7 @@ public class UserAdm {
 
         System.out.println("Set User ID to delete");
         try {
-            int userId = (scanner.nextInt());
+            int userId = scanner.nextInt();
             deleteUserDao.delete(userId);
         } catch (InputMismatchException ex){
             ex.getMessage();

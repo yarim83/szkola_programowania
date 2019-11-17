@@ -14,7 +14,7 @@ import java.util.Collections;
 public class SolutionDao {
 
     private static final String CREATE_QUERY = "INSERT INTO solution (created, updated, description, " +
-            "exercise_id, users_id) VALUES (? ,?, ?, ?, ?, ?)";
+            "exercise_id, users_id) VALUES (? ,?, ?, ?, ?)";
     private static final String READ_QUERY = "SELECT * FROM solution WHERE id = ?";
     private static final String UPDATE_QUERY = "UPDATE solution SET created = ?, updated = ?, description = ?, " +
             "exercise_id = ?, users_id = ? WHERE id = ?";

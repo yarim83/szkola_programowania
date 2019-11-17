@@ -2,18 +2,12 @@ package pl.coderslab;
 
 import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
-import pl.coderslab.dao.UserGroupDao;
-import pl.coderslab.model.Solution;
-import pl.coderslab.model.User;
-import pl.coderslab.model.UserGroup;
+import pl.coderslab.program.adm.ExerciseAdm;
 import pl.coderslab.program.adm.GroupAdm;
-import pl.coderslab.program.adm.SolutionAdm;
 import pl.coderslab.program.adm.SolutionAssign;
 import pl.coderslab.program.adm.UserAdm;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -54,8 +48,8 @@ public class Main {
                 case "adm":
                     new UserAdm().userMenu();
                     break;
-                case "solution":
-                    new SolutionAdm().userMenu();
+                case "exercise":
+                    new ExerciseAdm().userMenu();
                     break;
                 case "group":
                     new GroupAdm().userMenu();
@@ -64,11 +58,11 @@ public class Main {
                     new SolutionAssign().userMenu();
                     break;
                 case "quit":
-                    System.out.println("Wyjście z programu");
+                    System.out.println("Exiting program. Bey!");
                     scanner.close();
                     break;
                 default:
-                    System.out.println("Wybrałeś błędną opcję");
+                    System.out.println("Wrong option");
                     break;
             }
 
@@ -89,6 +83,6 @@ public class Main {
         System.out.println("solution - solution manager");
         System.out.println("group - group manager");
         System.out.println("assign - assign group");
-        System.out.println("quit - wyjście z programu");
+        System.out.println("quit - exit program");
     }
 }
