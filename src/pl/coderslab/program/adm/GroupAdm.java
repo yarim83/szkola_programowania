@@ -42,6 +42,7 @@ public class GroupAdm {
     /**
      * This method is used to print program menu.
      *
+     * @param userGroupDao
      * @return Nothing.
      */
     public static void printMenu(UserGroupDao userGroupDao) {
@@ -67,6 +68,9 @@ public class GroupAdm {
     /**
      * This method is used to add group do database.
      *
+     * @param scanner
+     * @param userGroup
+     * @param userGroupDao
      * @return Nothing.
      */
     public static void addGroup(Scanner scanner, UserGroup userGroup, UserGroupDao userGroupDao) {
@@ -78,6 +82,9 @@ public class GroupAdm {
     /**
      * This method is used to edit user group.
      *
+     * @param userGroup
+     * @param userGroupDao
+     * @param scanner
      * @return Nothing.
      */
     public static void editGroup(Scanner scanner, UserGroup userGroup, UserGroupDao userGroupDao) {
@@ -101,6 +108,8 @@ public class GroupAdm {
     /**
      * This method is used to delete user group.
      *
+     * @param userGroupDao
+     * @param scanner
      * @return Nothing.
      */
     public static void deleteGroup(Scanner scanner, UserGroupDao userGroupDao) {

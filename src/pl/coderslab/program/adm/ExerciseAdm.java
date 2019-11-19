@@ -1,10 +1,8 @@
 package pl.coderslab.program.adm;
 
 import pl.coderslab.dao.ExerciseDao;
-import pl.coderslab.dao.SolutionDao;
-import pl.coderslab.dao.UserDao;
 import pl.coderslab.model.Exercise;
-import pl.coderslab.model.Solution;
+
 
 import java.util.*;
 
@@ -40,7 +38,7 @@ public class ExerciseAdm {
     }
 
     /**
-     * This method is used to add two integers.
+     * This method is used to print menu.
      *
      * @return Nothing.
      */
@@ -67,10 +65,8 @@ public class ExerciseAdm {
     }
 
     /**
-     * This method is used to add two integers. This is
-     * a the simplest form of a class method, just to
-     * show the usage of various javadoc Tags.
-     *
+     * This method is used to add Exercise to DB.
+     * @param scanner
      * @return Nothing.
      */
     public static void addExercise(Scanner scanner) {
@@ -86,10 +82,8 @@ public class ExerciseAdm {
     }
 
     /**
-     * This method is used to add two integers. This is
-     * a the simplest form of a class method, just to
-     * show the usage of various javadoc Tags.
-     *
+     * This method is used to edit Exercise DB record
+     * @param scanner
      * @return Nothing.
      */
     public static void editExercise(Scanner scanner) {
@@ -118,10 +112,9 @@ public class ExerciseAdm {
     }
 
     /**
-     * This method is used to add two integers. This is
-     * a the simplest form of a class method, just to
-     * show the usage of various javadoc Tags.
+     * This method is used to delete Exercise from DB
      *
+     * @param scanner
      * @return Nothing.
      */
     public static void deleteExercise(Scanner scanner) {

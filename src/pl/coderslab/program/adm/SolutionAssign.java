@@ -7,8 +7,6 @@ import pl.coderslab.model.Solution;
 import pl.coderslab.model.User;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -61,6 +59,10 @@ public class SolutionAssign {
     /**
      * This method is used to add specify solution to user.
      *
+     * @param exerciseDao
+     * @param scanner
+     * @param solutionDao
+     * @param userDao
      * @return Nothing.
      */
     private static void addSolution(Scanner scanner, UserDao userDao, ExerciseDao exerciseDao, SolutionDao solutionDao) {
@@ -99,6 +101,8 @@ public class SolutionAssign {
     /**
      * This method is used to view solution assign to specify User ID.
      *
+     * @param scanner
+     * @param solutionDao
      * @return Nothing.
      */
     private static void viewSolution(Scanner scanner, SolutionDao solutionDao) {

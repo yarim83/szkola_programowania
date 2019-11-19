@@ -1,11 +1,8 @@
 package pl.coderslab.program.adm;
 
-import pl.coderslab.dao.SolutionDao;
 import pl.coderslab.dao.UserDao;
-import pl.coderslab.model.Exercise;
 import pl.coderslab.model.User;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
 
 public class UserAdm {
@@ -43,7 +40,7 @@ public class UserAdm {
 
 
     /**
-     * This method is used to add two integers.
+     * This method is used to print Menu.
      *
      * @return Nothing.
      */
@@ -72,9 +69,7 @@ public class UserAdm {
     }
 
     /**
-     * This method is used to add two integers. This is
-     * a the simplest form of a class method, just to
-     * show the usage of various javadoc Tags.
+     * This method is used to add User to DB
      *
      * @return Nothing.
      */
@@ -91,7 +86,7 @@ public class UserAdm {
     }
 
     /**
-     * This method is used to add two integers.
+     * This method is used to Edit User in DB.
      * @param scanner
      * @param user
      * @param userDao
@@ -120,9 +115,7 @@ public class UserAdm {
     }
 
     /**
-     * This method is used to add two integers. This is
-     * a the simplest form of a class method, just to
-     * show the usage of various javadoc Tags.
+     * This method is used to Delete User from DB
      *
      * @return Nothing.
      */
