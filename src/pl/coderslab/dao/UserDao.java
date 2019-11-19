@@ -3,10 +3,8 @@ package pl.coderslab.dao;
 import pl.coderslab.model.User;
 import pl.coderslab.util.DBUtil;
 
-import java.net.UnknownServiceException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class UserDao {
@@ -69,6 +67,7 @@ public class UserDao {
             return null;
         }
     }
+
     /**
      * This method is DAO method to update User and write into DB.
      *
@@ -89,6 +88,7 @@ public class UserDao {
         }
 
     }
+
     /**
      * This method is DAO method to delete User from DB.
      *
@@ -104,6 +104,7 @@ public class UserDao {
             ex.printStackTrace();
         }
     }
+
     /**
      * This method is DAO method to find all User obcects in DB.
      *
@@ -128,6 +129,7 @@ public class UserDao {
             return null;
         }
     }
+
     /**
      * This method is DAO method to find all User by Exercise Id in DB.
      *
