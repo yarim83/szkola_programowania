@@ -15,7 +15,7 @@ Zalety:
 * Umożliwienie łatwej podmiany sposobu dostępu do danych.
 * Ukrycie szczegółów implementacji dostępu do danych.
 
-![Screenshot](https://github.com/yarim83/js-jquery-workshop/blob/master/main/webapp/screens/js-jquery-workshop.png)
+![Screenshot](https://github.com/yarim83/szkola_programowania/blob/master/src/pl/coderslab/screens/DAO.png)
 
 ### Model bazy danych oparty o MySQL
 
